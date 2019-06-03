@@ -6,6 +6,25 @@ def selection_sort(arr):
 
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort(arr):
+    progress = 0
+
+    def bubble_loop(arr):
+        progress = 0
+        for i in range(0, len(arr) - 1):
+            apple = arr[i]
+            orange = arr[i+1]
+
+            if apple > orange:
+                arr[i] = orange
+                arr[i+1] = apple
+            else:
+                progress += 1
+
+        return arr, progress
+
+    while progress < (len(arr) - 1):
+        arr, progress = bubble_loop(arr)
+        # print(arr)
 
     # progress = 0
     # i = arr[0]
@@ -16,7 +35,7 @@ def bubble_sort(arr):
     # else:
     #     pass
     # progress += 1
-    # ( so a for loop )
+    # ( so a for-loop )
 
     return arr
 
@@ -25,3 +44,8 @@ def bubble_sort(arr):
 def count_sort(arr, maximum=-1):
 
     return arr
+
+
+if __name__ == '__main__':
+    test_arr = [5, 4, 3, 2, 1]
+    bubble_sort(test_arr)
