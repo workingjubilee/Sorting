@@ -36,26 +36,26 @@ def bubble_sort(arr):
 
 # STRETCH: implement the Count Sort function below
 def count_sort(arr, maximum=-1):
-    the_magic = []
+    助数詞 = []
     if maximum != -1:
-        the_magic = [0 for i in range(0, maximum+1)]
+        助数詞 = [0 for i in range(0, maximum+1)]
 
-    for i in range(0, len(arr)):
-        if arr[i] < 0:
+    for 一 in range(0, len(arr)):
+        if arr[一] < 0:
             return "Error, negative numbers not allowed in Count Sort"
         else:
             try:
-                the_magic[arr[i]] += 1
+                助数詞[arr[一]] += 1
             except IndexError:
-                the_magic.extend(
-                    [0 for i in range(len(the_magic) - 1, arr[i])])
-                the_magic[arr[i]] += 1
+                助数詞.extend(
+                    [0 for 二 in range(len(助数詞) - 1, arr[一])])
+                助数詞[arr[一]] += 1
 
     pointer = 0
-    for j, k in enumerate(the_magic):
-        if k > 0:
-            for l in range(0, k):
-                arr[pointer] = j
+    for 三, 四 in enumerate(助数詞):
+        if 四 > 0:
+            for 五 in range(0, 四):
+                arr[pointer] = 三
                 pointer += 1
     # print(arr)
     return arr
