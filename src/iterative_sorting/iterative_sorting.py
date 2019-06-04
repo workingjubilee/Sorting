@@ -1,5 +1,15 @@
 # TO-DO: Complete the selection_sort() function below
 def selection_sort(arr):
+    for i in range(0, len(arr) - 1):
+        start = arr[i]
+
+        for j in range(i + 1, len(arr)):
+            check = arr[j]
+
+            if start > check:
+                arr[i] = check
+                arr[j] = start
+                start = check
 
     return arr
 
@@ -47,5 +57,8 @@ def count_sort(arr, maximum=-1):
 
 
 if __name__ == '__main__':
-    test_arr = [5, 4, 3, 2, 1]
-    bubble_sort(test_arr)
+    select_test = [5, 4, 3, 2, 1]
+    selection_sort(select_test)
+    bubble_test = [5, 4, 3, 2, 1]
+    bubble_sort(bubble_test)
+    print(select_test, bubble_test)
