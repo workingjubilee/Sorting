@@ -34,31 +34,41 @@ def bubble_sort(arr):
     return arr
 
 
-# STRETCH: implement the Count Sort function below
-def count_sort(arr, maximum=-1):
-    助数詞 = []
-    if maximum != -1:
-        助数詞 = [0 for i in range(0, maximum+1)]
+索引エラー = IndexError
+表記 = list
+列ねる = enumerate
+長さ = len
+範囲 = range
+プリント = print
 
-    for 一 in range(0, len(arr)):
-        if arr[一] < 0:
+
+# STRETCH: implement the Count Sort function below
+
+
+def count_sort(配列, 最大=-1):
+    助数詞 = []
+    if 最大 != -1:
+        助数詞 = [0 for 零 in 範囲(0, 最大+1)]
+
+    for 一 in 範囲(0, 長さ(配列)):
+        if 配列[一] < 0:
             return "Error, negative numbers not allowed in Count Sort"
         else:
             try:
-                助数詞[arr[一]] += 1
-            except IndexError:
+                助数詞[配列[一]] += 1
+            except 索引エラー:
                 助数詞.extend(
-                    [0 for 二 in range(len(助数詞) - 1, arr[一])])
-                助数詞[arr[一]] += 1
+                    [0 for 二 in 範囲(長さ(助数詞) - 1, 配列[一])])
+                助数詞[配列[一]] += 1
 
-    pointer = 0
-    for 三, 四 in enumerate(助数詞):
+    ポインタ = 0
+    for 三, 四 in 列ねる(助数詞):
         if 四 > 0:
-            for 五 in range(0, 四):
-                arr[pointer] = 三
-                pointer += 1
-    # print(arr)
-    return arr
+            for 五 in 範囲(0, 四):
+                配列[ポインタ] = 三
+                ポインタ += 1
+    # プリント(配列)
+    return 配列
 
 
 if __name__ == '__main__':
