@@ -1,51 +1,35 @@
+import copy
 # TO-DO: Complete the selection_sort() function below
+
+
 def selection_sort(arr):
     for i in range(0, len(arr) - 1):
         start = arr[i]
-
+        # print(arr)
         for j in range(i + 1, len(arr)):
-            check = arr[j]
+            if arr[i] > arr[j]:
+                arr[i], arr[j] = arr[j], arr[i]
 
-            if start > check:
-                arr[i] = check
-                arr[j] = start
-                start = check
-
+    # print(arr)
     return arr
 
 
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort(arr):
-    progress = 0
-
     def bubble_loop(arr):
         progress = 0
         for i in range(0, len(arr) - 1):
-            apple = arr[i]
-            orange = arr[i+1]
-
-            if apple > orange:
-                arr[i] = orange
-                arr[i+1] = apple
+            if arr[i] > arr[i+1]:
+                arr[i], arr[i+1] = arr[i+1], arr[i]
             else:
                 progress += 1
-
         return arr, progress
 
-    while progress < (len(arr) - 1):
+    while True:
         arr, progress = bubble_loop(arr)
-        # print(arr)
-
-    # progress = 0
-    # i = arr[0]
-    # j = arr[1]
-    # if j < i:
-    #     arr[0] = j
-    #     arr[1] = i
-    # else:
-    #     pass
-    # progress += 1
-    # ( so a for-loop )
+        # print(arr, progress)
+        if progress >= (len(arr) - 1):
+            break
 
     return arr
 
@@ -57,8 +41,23 @@ def count_sort(arr, maximum=-1):
 
 
 if __name__ == '__main__':
-    select_test = [5, 4, 3, 2, 1]
-    selection_sort(select_test)
-    bubble_test = [5, 4, 3, 2, 1]
-    bubble_sort(bubble_test)
-    print(select_test, bubble_test)
+    def basic_tests(sort):
+        test_dict = {
+            "sorted_list": [1, 2, 3, 4, 5],
+            "nearly_sorted": [1, 3, 2, 4, 5],
+            "reversed_list": [5, 4, 3, 2, 1],
+            "awkward_list": [5, 2, 3, 4, 1]}
+
+        for k, v in test_dict.items():
+            sort(v)
+        return test_dict
+
+    select_tests = basic_tests(selection_sort)
+    bubble_tests = basic_tests(bubble_sort)
+    count_tests = basic_tests(count_sort)
+
+    # selects = selection_sort(copy(reversed_array))
+    # bubble_test = [5, 4, 3, 2, 1]
+    # bubble_sort(bubble_test)
+    # bubble_test = [5, 4, 3, 2, 1]
+    # print(select_test, bubble_test)
