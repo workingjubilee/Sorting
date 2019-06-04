@@ -36,7 +36,28 @@ def bubble_sort(arr):
 
 # STRETCH: implement the Count Sort function below
 def count_sort(arr, maximum=-1):
+    the_magic = []
+    if maximum != -1:
+        the_magic = [0 for i in range(0, maximum+1)]
 
+    for i in range(0, len(arr)):
+        if arr[i] < 0:
+            return "Error, negative numbers not allowed in Count Sort"
+        else:
+            try:
+                the_magic[arr[i]] += 1
+            except IndexError:
+                the_magic.extend(
+                    [0 for i in range(len(the_magic) - 1, arr[i])])
+                the_magic[arr[i]] += 1
+
+    pointer = 0
+    for j, k in enumerate(the_magic):
+        if k > 0:
+            for l in range(0, k):
+                arr[pointer] = j
+                pointer += 1
+    # print(arr)
     return arr
 
 
@@ -55,9 +76,3 @@ if __name__ == '__main__':
     select_tests = basic_tests(selection_sort)
     bubble_tests = basic_tests(bubble_sort)
     count_tests = basic_tests(count_sort)
-
-    # selects = selection_sort(copy(reversed_array))
-    # bubble_test = [5, 4, 3, 2, 1]
-    # bubble_sort(bubble_test)
-    # bubble_test = [5, 4, 3, 2, 1]
-    # print(select_test, bubble_test)
