@@ -10,47 +10,44 @@
 # [9][8]
 
 
-def cut_decks():
-
-    return
-
-
-def bridge_shuffle(cut_one, cut_two):
+def bridge_unshuffle(cut_one, cut_two):
+    # print("accepting", cut_one, cut_two)
     len1, len2 = len(cut_one), len(cut_two)
-    shuffled = [0] * (len1 + len2)
-    print(len1, len2)
-    print(shuffled)
+    unshuffled = [0] * (len1 + len2)
 
-    for i in range(len(shuffled)):
-        print(i)
+    for i in range(len(unshuffled)):
         if cut_one == []:
-            print("finishing...")
-            shuffled[i] = cut_two[0]
+            unshuffled[i] = cut_two[0]
             del cut_two[0]
         elif cut_two == []:
-            print("finishing...")
-            shuffled[i] = cut_one[0]
+            unshuffled[i] = cut_one[0]
             del cut_one[0]
         elif cut_one[0] > cut_two[0]:
-            print(cut_one[0], "is greater than", cut_two[0])
-            shuffled[i] = cut_two[0]
+            # print(cut_one[0], "is greater than", cut_two[0])
+            unshuffled[i] = cut_two[0]
             del cut_two[0]
         elif cut_two[0] > cut_one[0]:
-            print(cut_two[0], "is greater than", cut_one[0])
-            shuffled[i] = cut_one[0]
+            # print(cut_two[0], "is greater than", cut_one[0])
+            unshuffled[i] = cut_one[0]
             del cut_one[0]
 
-    return shuffled
-
-    # [1, 3][2, 4]
+    # print("returning", unshuffled)
+    return unshuffled
 
 
 # TO-DO: implement the Merge Sort function below USING RECURSION
 
 
-# def merge_sort(arr):
-
-#     merge_sort(arr)
+def merge_sort(deck):
+    if len(deck) <= 1:
+        return deck
+    else:
+        cut_at = len(deck) // 2
+        cut_one = merge_sort(deck[:cut_at])
+        cut_two = merge_sort(deck[cut_at:])
+        # print("cutting on:", cut_at, "getting:", cut_one, cut_two)
+        deck = bridge_unshuffle(cut_one, cut_two)
+        return deck
 
 
 # STRETCH: implement an in-place merge sort algorithm
@@ -74,4 +71,5 @@ def timsort(arr):
 
 
 if __name__ == '__main__':
-    print(bridge_shuffle([1, 3], [2, 4]))
+    print(bridge_unshuffle([1, 3], [2, 4]))
+    print(merge_sort([4, 1, 3, 2]))
